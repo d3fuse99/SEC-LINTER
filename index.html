@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEC-LINTER</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="cyber-header">
+        <div class="logo">SEC-LINTER</div>
+    </div>
+    <div class="container">
+        <div class="panel left-panel">
+            <div class="panel-header">INPUT CONSOLE</div>
+            <textarea id="code-input" placeholder="PASTE YOUR SOURCE CODE HERE..."></textarea>
+            <div id="drop-zone">
+                DRAG & DROP FILE HERE (.py, .js, .html)
+                <input type="file" id="file-input" style="display: none;">
+            </div>
+            <button id="audit-btn">START SECURITY AUDIT</button>
+        </div>
+        <div class="panel right-panel">
+            <div class="panel-header">THREAT INTELLIGENCE LOGS</div>
+            <div id="console-logs" class="logs-container">
+                <div class="log-entry system-log">AWAITING CODE SUBMISSION...</div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
