@@ -1,0 +1,150 @@
+{
+  "ast_call_rules": [
+    {
+      "names": ["eval", "exec"],
+      "class": "Unsafe Function Evaluation",
+      "severity": "HIGH",
+      "remediation": "Avoid using eval() or exec(). Use safer alternatives like json.loads() or ast.literal_eval()."
+    },
+    {
+      "names": ["system", "popen"],
+      "module_owner": "os",
+      "class": "Insecure OS Command Execution",
+      "severity": "HIGH",
+      "remediation": "Avoid using os.system() and os.popen(). Use subprocess.run() with shell=False."
+    },
+    {
+      "names": ["md5", "sha1"],
+      "module_owner": "hashlib",
+      "class": "Weak Cryptographic Hash",
+      "severity": "MEDIUM",
+      "remediation": "Avoid using weak cryptographic hashes (MD5, SHA1). Use hashlib.sha256() or stronger."
+    },
+    {
+      "names": ["MD5", "ARC4", "DES"],
+      "module_owner": "Crypto.Cipher",
+      "class": "Using Obsolete PyCrypto Cipher",
+      "severity": "HIGH",
+      "remediation": "PyCrypto is deprecated and insecure. Migrate to pyca/cryptography package."
+    },
+    {
+      "names": ["load", "loads"],
+      "module_owner": "pickle",
+      "class": "Insecure Deserialization (Pickle)",
+      "severity": "HIGH",
+      "remediation": "Avoid using pickle for untrusted data. Use safer serialization like json."
+    },
+    {
+      "names": ["unsafe_load"],
+      "module_owner": "yaml",
+      "class": "Insecure Deserialization (PyYAML)",
+      "severity": "HIGH",
+      "remediation": "Avoid yaml.unsafe_load(). Use yaml.safe_load() instead."
+    },
+    {
+      "names": ["randint", "choice", "randrange", "random", "uniform"],
+      "module_owner": "random",
+      "class": "Weak Pseudo-Random Number Generator",
+      "severity": "LOW",
+      "remediation": "Do not use standard random module for security-sensitive purposes. Use secrets module instead."
+    },
+    {
+      "names": ["parse", "fromstring"],
+      "module_owner": "xml.etree.ElementTree",
+      "class": "Insecure XML Parser (Potential XXE)",
+      "severity": "MEDIUM",
+      "remediation": "Standard xml module is vulnerable to XML External Entity (XXE) attacks. Use defusedxml package."
+    }
+  ],
+  "regex_rules": [
+    {
+      "pattern": "AKIA[0-9A-Z]{16}",
+      "class": "Leaked AWS Access Key",
+      "severity": "HIGH",
+      "remediation": "Revoke the AWS access key immediately and move it to an environment variable or secrets manager."
+    },
+    {
+      "pattern": "[0-9]{9,10}:[a-zA-Z0-9_-]{35}",
+      "class": "Leaked Telegram Bot Token",
+      "severity": "HIGH",
+      "remediation": "Revoke the Telegram bot token and store it securely."
+    },
+    {
+      "pattern": "-----BEGIN [A-Z ]*PRIVATE KEY-----",
+      "class": "Leaked Private Key Block",
+      "severity": "HIGH",
+      "remediation": "Remove the private key from source control and revoke it immediately."
+    },
+    {
+      "pattern": "https://hooks\\.slack\\.com/services/T[A-Z0-9_]{8}/B[A-Z0-9_]{8}/[A-Za-z0-9_]{24}",
+      "class": "Leaked Slack Webhook URL",
+      "severity": "HIGH",
+      "remediation": "Revoke the Slack Webhook immediately and move it to an environment variable."
+    },
+    {
+      "pattern": "AIza[0-9A-Za-z\\-_]{35}",
+      "class": "Leaked Google API Key",
+      "severity": "HIGH",
+      "remediation": "Revoke or restrict the Google API key immediately in the GCP console."
+    },
+    {
+      "pattern": "sk_live_[0-9a-zA-Z]{24}",
+      "class": "Leaked Stripe Live API Key",
+      "severity": "HIGH",
+      "remediation": "Revoke the Stripe live API key immediately in the Stripe dashboard."
+    },
+    {
+      "pattern": "ghp_[a-zA-Z0-9]{36}",
+      "class": "Leaked GitHub Personal Access Token",
+      "severity": "HIGH",
+      "remediation": "Revoke the compromised GitHub token immediately in your developer settings."
+    },
+    {
+      "pattern": "EAACEdEose0cBA[0-9A-Za-z]+",
+      "class": "Leaked Facebook Access Token",
+      "severity": "HIGH",
+      "remediation": "Invalidate the Facebook access token immediately via the Facebook Developers console."
+    },
+    {
+      "pattern": "(?i)(?:key|secret|token|password|passwd|auth|api_key|apikey)\\s*[:=]\\s*['\"]([a-zA-Z0-9_\\-+]{16,})['\"]",
+      "class": "Potential Hardcoded Secret",
+      "severity": "HIGH",
+      "remediation": "Remove hardcoded credential. Use environment variables or a secure vault."
+    },
+    {
+      "pattern": "\\.innerHTML\\s*=",
+      "file_extensions": [".js", ".html"],
+      "class": "Unsanitized HTML Injection (innerHTML)",
+      "severity": "MEDIUM",
+      "remediation": "Replace innerHTML with textContent or use a safe sanitization library."
+    },
+    {
+      "pattern": "document\\.write\\s*\\(",
+      "file_extensions": [".js", ".html"],
+      "class": "Dangerous Document Write Usage",
+      "severity": "HIGH",
+      "remediation": "Avoid using document.write() as it is highly vulnerable to XSS and blocks page rendering."
+    },
+    {
+      "pattern": "\\beval\\s*\\(",
+      "file_extensions": [".js", ".html"],
+      "class": "Client-Side Eval Execution",
+      "severity": "HIGH",
+      "remediation": "Never use eval() in client-side JavaScript. Parse structured data using JSON.parse()."
+    },
+    {
+      "pattern": "location\\.(?:href|hash)\\s*=\s*(?!['\"])",
+      "file_extensions": [".js", ".html"],
+      "class": "Potential DOM-based Open Redirect",
+      "severity": "MEDIUM",
+      "remediation": "Avoid assigning dynamic untrusted values to location.href. Sanitize or validate input."
+    },
+    {
+      "pattern": "(?i)(?:const|let|var)\\s+([a-zA-Z0-9_-]*(?:secret|key|token|passwd|password)[a-zA-Z0-9_-]*)\\s*=\s*['\"]([a-zA-Z0-9_\\-+]{8,})['\"]",
+      "file_extensions": [".js", ".html"],
+      "class": "Frontend Hardcoded Credential",
+      "severity": "HIGH",
+      "remediation": "Do not store sensitive credentials in client-side code. Use a secure backend proxy."
+    }
+  ]
+}
