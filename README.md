@@ -1,6 +1,7 @@
 # SEC-LINTER ⚡
 
-![SEC-LINTER Screenshot](https://raw.githubusercontent.com/d3fuse99/SEC-LINTER/main/preview.png)
+<img width="1881" height="988" alt="image" src="https://github.com/user-attachments/assets/5f4f3e73-37c9-43b3-8617-4117eb494f12" />
+
 
 **Advanced AST-based Static Application Security Testing (SAST) engine with an interactive cyberpunk-inspired Web Console.**
 
