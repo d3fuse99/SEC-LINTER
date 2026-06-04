@@ -1,4 +1,3 @@
-````text
 __pycache__/
 *.pyc
 *.pyo
@@ -15,6 +14,9 @@ pip-selfcheck.json
 .DS_Store
 Thumbs.db
 desktop.ini
+rate_limits.db
+rate_limits.db-wal
+rate_limits.db-shm
 .env
 .env.local
 .env.development.local
@@ -29,5 +31,3 @@ debug.log
 node_modules/
 dist/
 build/
-_EDR_Quarantine/
-EDR_Quarantine/
