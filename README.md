@@ -65,3 +65,9 @@ Access the local interactive dashboard at:
 ```
 http://localhost:5006
 ```
+
+---
+## Project structure
+<img width="264" height="133" alt="image" src="https://github.com/user-attachments/assets/6d179c64-12cc-45a0-aea0-adff3f7edcdb" />
+
+---
