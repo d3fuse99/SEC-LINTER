@@ -1,0 +1,50 @@
+{
+  "ast_call_rules": [
+    {
+      "names": ["eval", "exec"],
+      "class": "Unsafe Function Evaluation",
+      "severity": "HIGH",
+      "remediation": "Avoid using eval() or exec(). Use safer alternatives."
+    },
+    {
+      "names": ["system"],
+      "module_owner": "os",
+      "class": "Insecure OS Command Execution",
+      "severity": "HIGH",
+      "remediation": "Avoid using os.system(). Use subprocess.run() with shell=False."
+    },
+    {
+      "names": ["MD5", "ARC4", "DES"],
+      "module_owner": "Crypto.Cipher",
+      "class": "Using Obsolete PyCrypto Cipher",
+      "severity": "HIGH",
+      "remediation": "PyCrypto is deprecated and insecure. Migrate to pyca/cryptography package."
+    }
+  ],
+  "regex_rules": [
+    {
+      "pattern": "AKIA[0-9A-Z]{16}",
+      "class": "Leaked AWS Access Key",
+      "severity": "HIGH",
+      "remediation": "Revoke the key and migrate to environment variables."
+    },
+    {
+      "pattern": "[0-9]{9,10}:[a-zA-Z0-9_-]{35}",
+      "class": "Leaked Telegram Bot Token",
+      "severity": "HIGH",
+      "remediation": "Revoke the token and store it in a secure environment configuration."
+    },
+    {
+      "pattern": "-----BEGIN [A-Z ]*PRIVATE KEY-----",
+      "class": "Leaked Private Key Block",
+      "severity": "HIGH",
+      "remediation": "Remove the private key from source control and revoke it immediately."
+    },
+    {
+      "pattern": "AIza[0-9A-Za-z\\-_]{35}",
+      "class": "Leaked Google API Key",
+      "severity": "HIGH",
+      "remediation": "Revoke or restrict the Google API key immediately in the GCP console."
+    }
+  ]
+}
