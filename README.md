@@ -1,6 +1,5 @@
 # SEC-LINTER ⚡
-
-<img width="1881" height="988" alt="image" src="https://github.com/user-attachments/assets/b370e118-a27e-4b22-989e-b4b2a1705a48" />
+<img width="1881" height="988" alt="image" src="https://github.com/user-attachments/assets/670bf54a-7b10-412b-a133-559e1ded71b9" />
 
 
 **Advanced AST-based Static Application Security Testing (SAST) engine with an interactive cyberpunk-inspired Web Console.**
@@ -43,7 +42,15 @@ SEC-LINTER is a lightweight, modular, and zero-dependency local code security sc
 
 ## Directory Structure
 
-<img width="264" height="133" alt="image" src="https://github.com/user-attachments/assets/ca92dd69-3eed-4a71-b8a3-f0172ae67b6c" />
+```
+SEC-LINTER/
+│
+├── server.py         # Multi-threaded HTTP server & core SAST engine
+├── rules.json        # Extensible declarative JSON rules database
+├── index.html        # Cyberpunk dashboard structural layout
+├── style.css         # Cyberpunk dashboard visual styling & glow animations
+└── script.js         # Reactive UI, directory traversal & AJAX router
+```
 
 ---
 
