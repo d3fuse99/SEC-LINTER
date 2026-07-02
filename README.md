@@ -1,5 +1,6 @@
 # SEC-LINTER ⚡
-<img width="1881" height="988" alt="image" src="https://github.com/user-attachments/assets/670bf54a-7b10-412b-a133-559e1ded71b9" />
+
+<img width="1881" height="988" alt="image" src="https://github.com/user-attachments/assets/d45d4892-1972-4244-b0dd-8ac77e7c606c" />
 
 
 **Advanced AST-based Static Application Security Testing (SAST) engine with an interactive cyberpunk-inspired Web Console.**
@@ -54,7 +55,9 @@ SEC-LINTER/
 
 ---
 
-## Quick Start
+## Deployment
+
+### Local Host Run
 
 Start the local security server:
 
@@ -65,5 +68,25 @@ python server.py
 Access the local interactive dashboard at:
 
 ```
-http://localhost:5006
+http://127.0.0.1:5006
+```
+
+### Docker Deployment
+
+Build the lightweight container image:
+
+```bash
+docker build -t sec-linter .
+```
+
+Run the container with port forwarding and database volume mount:
+
+```bash
+docker run -d -p 5006:5006 -v $(pwd):/app sec-linter
+```
+
+Access the interactive dashboard at:
+
+```
+http://127.0.0.1:5006
 ```
